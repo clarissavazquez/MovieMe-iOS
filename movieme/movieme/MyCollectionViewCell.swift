@@ -8,7 +8,6 @@
 
 import UIKit
 class MyCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var recLabel: UILabel!
-   
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var resultPosterImage: MovieButton!
+    @IBOutlet weak var recPosterImage: MovieButton!
 }
