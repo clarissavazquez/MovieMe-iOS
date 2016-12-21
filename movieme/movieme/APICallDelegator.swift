@@ -1,17 +1,14 @@
-//
-//  APICallDelegator.swift
-//  movieme
-//
-//  Created by psycho on 12/19/16.
-//  Copyright © 2016 movieme. All rights reserved.
-//
+/**
+ *  APICallDelegator.swift
+ *
+ *  The APICallDelegator wraps functionality for all APICall delegates.
+ *  These wrapper methods can have any number of parameters necessary
+ *  to make a successful request and must have an optional callback
+ *  through which the results can be sent.
+ */
 
 import Foundation
 
-//  The APICallDelegator wraps functionality for all APICall delegates.
-//  These wrapper methods can have any number of parameters necessary
-//  to make a successful request and must have an optional callback
-//  through which the results can be sent.
 class APICallDelegator {
 
     //  title: the pattern to search for in Movie titles.

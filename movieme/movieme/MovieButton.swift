@@ -1,10 +1,11 @@
-//
-//  MovieButton.swift
-//  movieme
-//
-//  Created by Clarissa Vazquez on 12/21/16.
-//  Copyright © 2016 movieme. All rights reserved.
-//
+/**
+ *  MovieButton.swift
+ *
+ *  MovieButton extends a regular UIButton and adds a Movie object 
+ *  to button. Each button needs to have a movie associated with it
+ *  so that in the case that it is tapped, movie info will be sent 
+ *  to MovieInfoViewController
+ */
 
 import UIKit
 

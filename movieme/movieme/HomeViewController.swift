@@ -1,20 +1,18 @@
-//
-//  HomeViewController.swift
-//  movieme
-//
-//  Created by Clarissa Vazquez on 12/19/16.
-//  Copyright © 2016 movieme. All rights reserved.
-//
+/**
+ *  HomeViewController.swift
+ *  
+ *  blah blah blah
+ */
 
 import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
+    let acd = APICallDelegator()
     var movies = [Movie]()
-    var movie = Movie(details: Dictionary<String, String>())
     
     
-    // MARK: - UICollectionViewDataSource protocol
+    // Implement methods for UICollectionViewDataSource protocol
     
     // Tell collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,25 +24,32 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MyCollectionViewCell
         
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        // Use the outlet in our custom class to get a reference to the UIButton in the cell
+        // and set its background image to the current movie's poster
         if let url = NSURL(string: self.movies[indexPath.item].POSTER) {
             if let data = NSData(contentsOfURL: url) {
-                cell.recPosterImage.setBackgroundImage(UIImage(data: data), forState: UIControlState.Normal)
-                cell.recPosterImage.movie = self.movies[indexPath.item]
+                cell.posterImageButton.setBackgroundImage(UIImage(data: data), forState: UIControlState.Normal)
+                cell.posterImageButton.movie = self.movies[indexPath.item]
             }        
         }
         
         return cell
     }
     
-    // MARK: - UICollectionViewDelegate protocol
+    // Implement methods for UICollectionViewDelegate protocol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: NSIndexPath) {
-        // handle tap events
+        // TODO: handle tap events in this method
         print("You selected cell #\(indexPath.item)!")
     }
     
-    @IBAction func recPosterImageTapped(sender: MovieButton) {
+    // Summary: This method handles the event when a
+    //          resultPosterImage is tapped.
+    // Post-Condition: UI navigates to MovieInfoViewController
+    @IBAction func posterImageButtonTapped(sender: MovieButton) {
+        // 1. Declare a MovieInfoViewController object called movieInfoViewController
+        // 2. Set movieInfoViewController's movie to the MovieButton's movie
+        // 3. Navigate to movieInfoViewController
         log("recPosterImage was tapped")
         let movieInfoViewController: MovieInfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MovieInfoViewController") as! MovieInfoViewController
         movieInfoViewController.movie = sender.movie
@@ -55,14 +60,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movie.POSTER = "http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2015/10/star-wars-force-awakens-official-poster.jpg"
-        movies.append(movie)
-        // Do any additional setup after loading the view, typically from a nib.
+//        movie.POSTER = "http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2015/10/star-wars-force-awakens-official-poster.jpg"
+//        movies.append(movie)
+        
+        
+        // TODO: Make API Call to get movie recommendations
+        // NOTE: Not sure where exactly APICall should occur
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     

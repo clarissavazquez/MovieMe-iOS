@@ -28,6 +28,7 @@
 		CBB409E81E0A84E500C424A4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB409E61E0A84E500C424A4 /* SearchViewController.swift */; };
 		CBB409E91E0A84E500C424A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB409E71E0A84E500C424A4 /* ViewController.swift */; };
 		CBB409EA1E0A85CE00C424A4 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB409931E077FC900C424A4 /* SearchResultsViewController.swift */; };
+		CBB409EC1E0B446400C424A4 /* NoResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB409EB1E0B446400C424A4 /* NoResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		CBB409E41E0A845A00C424A4 /* MovieInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
 		CBB409E61E0A84E500C424A4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CBB409E71E0A84E500C424A4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CBB409EB1E0B446400C424A4 /* NoResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				CBB409981E077FC900C424A4 /* Assets.xcassets */,
 				CBB4099A1E077FC900C424A4 /* LaunchScreen.storyboard */,
 				CBB4099D1E077FC900C424A4 /* Info.plist */,
+				CBB409EB1E0B446400C424A4 /* NoResultsViewController.swift */,
 			);
 			path = movieme;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				40BAF53A1E08F0CD007E47FF /* SearchDelegate.swift in Sources */,
 				CBB409921E077FC900C424A4 /* AppDelegate.swift in Sources */,
 				CBB409E81E0A84E500C424A4 /* SearchViewController.swift in Sources */,
+				CBB409EC1E0B446400C424A4 /* NoResultsViewController.swift in Sources */,
 				40BAF5391E08F0CD007E47FF /* Movie.swift in Sources */,
 				CBB409E91E0A84E500C424A4 /* ViewController.swift in Sources */,
 				40BAF53B1E08F0CD007E47FF /* Serializable.swift in Sources */,
