@@ -9,10 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let log = "ViewController"
+    let acd = APICallDelegator()
+    @IBOutlet weak var searchResults: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.didReceiveSearchResults), name: "com.movieme.rest.SearchDelegate", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +23,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func didClickSearch(sender: UIButton) {
+        acd.doSearchForMovie("star wars")
+    }
 
+    func didReceiveSearchResults() {
+        if let movies = acd.product as? [Movie] {
+            searchResults.text = movies[0].TITLE
+        }
+    }
 }
 

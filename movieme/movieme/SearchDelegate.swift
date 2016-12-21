@@ -7,30 +7,29 @@
 //
 import Foundation
 
+//  The SearchDelegate class conforms to the APICall protocol.
+//  Through this class, the MovieMe search API can be called.
 class SearchDelegate: APICall {
-    let log: String = "SearchDelegate"
-    var path: String
+    let path: String = "/movie/search"
     var url: NSURL?
+    var result: [Movie]?
 
-    init() {
-        self.path = "/movie/search?"
-    }
-
+    //  params: dictionary of unique parameter names mapped to values.
+    //          ["title": "star wars", ...]
+    //  summary: this method executes the APICall setup and verifies 
+    //           the URL is not nil.
     func setup(params: [String:String]?) {
-        print(log, "setup")
-        
-        if let _url = (self as APICall).setup(params) {
-            self.url = _url
-            
-            print(log, self.url!)
-        } else {
-            print(log, "ERROR")
+        guard let url = (self as APICall).setup(params) else {
+            log("URL is nil")
+            return
         }
+        
+        self.url = url
     }
 
-    func doInBackground() -> Any? {
-        print(log, "doInBackground")
-        
-        return (self as APICall).doInBackground()
+    //  summary: this method executes the APICall doInBackground and
+    //           provides the callback method.
+    func doInBackground(callback: ([Dictionary<String, String>]?)->()) {
+        (self as APICall).doInBackground(callback)
     }
 }
