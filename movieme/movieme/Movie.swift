@@ -21,9 +21,10 @@ class Movie: Serializable {
     var GENRE: String = ""
     var RUNTIME: String = ""
     var PLOT: String = ""
-    public override var description: String { return TITLE }
+    override var description: String { return TITLE }
 
     init(details: Dictionary<String, String>) {
         super.init(json: details)
+        log("complete: \(self.TITLE)")
     }
 }

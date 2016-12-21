@@ -11,7 +11,6 @@ import Foundation
 //  run the query on a background thread and deserialize the JSON.
 protocol APICall {
     var path: String {get}
-    var url: NSURL? {get}
 }
 
 extension APICall {
@@ -37,46 +36,42 @@ extension APICall {
             // no parameters given
         }
 
+        log("complete: \(String(urlcomponents.URL!))")
         return urlcomponents.URL
     }
     
-    //  summary: this method creates a background queue on which the
-    //           query can be run.
-    func doInBackground(callback: (([Dictionary<String, String>]) -> Void)?) {
-        let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
+    //  url: the target URL with a given set of parameters.
+    //  callback: the method to which the results are passed through. 
+    //  summary: this method takes an URL and optionally a callback
+    //           method. it makes the request specified by the URL
+    //           and passes the results to the callback method.
+    func execute(url: NSURL, callback: (([Dictionary<String, String>]) -> Void)?) {
+        let urlrequest = NSURLRequest(URL:url)
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
         
-        dispatch_async(backgroundqueue) {
-            guard let url = self.url else {
-                log("URL is nil")
+        let task = session.dataTaskWithRequest(urlrequest, completionHandler: {(data, _, error) in
+            do {
+                guard error == nil else {
+                    log("Error")
+                    return
+                }
+
+                if let data = data {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [Dictionary<String, String>]
+
+                    dispatch_async(dispatch_get_main_queue(), {
+                        callback?(json)
+                        return
+                    })
+                }
+            } catch {
+                // TODO: handle errors
+                log("Error")
                 return
             }
-            
-            let urlrequest = NSURLRequest(URL:url)
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-            let session = NSURLSession(configuration: config)
-            
-            let task = session.dataTaskWithRequest(urlrequest, completionHandler: {(data, _, error) in
-                do {
-                    guard error == nil else {
-                        log(String(error))
-                        return
-                    }
-
-                    if let data = data {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                        dispatch_async(dispatch_get_main_queue(), {
-                            callback?(json as! [Dictionary<String, String>])
-                            return
-                        })
-                    }
-
-                } catch {
-                    // TODO: handle errors
-                    log("Error")
-                }
-            })
-            
-            task.resume()
-        }
+        })
+        
+        task.resume()
     }
 }

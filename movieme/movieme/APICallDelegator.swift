@@ -8,31 +8,24 @@
 
 import Foundation
 
+//  The APICallDelegator wraps functionality for all APICall delegates.
+//  These wrapper methods can have any number of parameters necessary
+//  to make a successful request and must have an optional callback
+//  through which the results can be sent.
 class APICallDelegator {
-    var product: [Serializable]?
 
-    func doSearchForMovie(title: String?) {
+    //  title: the pattern to search for in Movie titles.
+    //  callback: the method through which the results are sent.
+    //  summary: this method searches for some pattern in the
+    //           titles of Movies.
+    func doSearchForMovie(title: String, callback: (([Dictionary<String,String>]) -> Void)?) {
         let searchdelegate = SearchDelegate()
-        var movies = [Movie]()
+        let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
 
-        guard let title = title else {
-            log("Title is nil")
-            return
-        }
-        
-        searchdelegate.setup(["property":"title", "value":title])
-        searchdelegate.doInBackground() {(result: [Dictionary<String, String>]?) -> () in
-            guard let result = result else {
-                log("Result is nil")
-                return
+        dispatch_async(backgroundqueue) {
+            if let url = searchdelegate.setup(["property":"title", "value":title]) {
+                searchdelegate.execute(url, callback: callback)
             }
-
-            for movie in result {
-                movies.append(Movie(details: movie))
-            }
-
-            self.product = movies
-            NSNotificationCenter.defaultCenter().postNotificationName("com.movieme.rest.SearchDelegate", object: nil)
         }
     }
 }
