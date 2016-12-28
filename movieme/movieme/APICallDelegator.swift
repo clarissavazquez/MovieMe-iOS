@@ -45,14 +45,14 @@ class APICallDelegator {
     //  imdbid: the corresponding movie's imdbid
     //  callback: the method through which the results are sent.
     //  summary: this method creates a like relationship between 
-    //           the given user and movie
-    func doUserLikesMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
-        let userlikesdelegate = UserLikesDelegate()
+    //           the given user and movie.
+    func doLikeMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let likedelegate = LikeDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
         
         dispatch_async(backgroundqueue) {
-            if let url = userlikesdelegate.setup(["userid":userid, "imdbid":imdbid]) {
-                userlikesdelegate.execute(url, callback: callback)
+            if let url = likedelegate.setup(["userid":userid, "imdbid":imdbid]) {
+                likedelegate.execute(url, callback: callback)
             }
         }
     }
@@ -61,32 +61,29 @@ class APICallDelegator {
     //  imdbid: the corresponding movie's imdbid
     //  callback: the method through which the results are sent.
     //  summary: this method removes an existing like relationship
-    //           between the given user and movie
-    func doUserUnikesMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
-        let userunlikesdelegate = UserUnlikesDelegate()
+    //           between the given user and movie.
+    func doUnikeMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let userunlikesdelegate = UnlikeDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
         
         dispatch_async(backgroundqueue) {
             if let url = userunlikesdelegate.setup(["userid":userid, "imdbid":imdbid]) {
                 userunlikesdelegate.execute(url, callback: callback)
-
-    func doLikeMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
-        let likedelegate = LikeDelegate()
-        let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
-
-        dispatch_async(backgroundqueue) {
-            if let url = likedelegate.setup(["userid":userid, "imdbid":imdbid]) {
-                likedelegate.execute(url, callback: callback)
             }
         }
     }
 
+    //  userid: the corresponding user
+    //  callback: the method through which the results are sent.
+    //  summary: this method retrieves the given user's list of
+    //           movie recommendations.
     func doGetRecommendations(userid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
         let recommendationdelegate = RecommendationDelegate()
         let backgroundqueue = dispatch_queue_create("\(#function)", DISPATCH_QUEUE_CONCURRENT)
 
         dispatch_async(backgroundqueue) {
             if let url = recommendationdelegate.setup(["userid":userid]) {
+                recommendationdelegate.execute(url, callback: callback)
             }
         }
     }
