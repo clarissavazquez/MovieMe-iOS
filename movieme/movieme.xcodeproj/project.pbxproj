@@ -15,6 +15,9 @@
 		40BAF5391E08F0CD007E47FF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BAF5311E08F0CD007E47FF /* Movie.swift */; };
 		40BAF53A1E08F0CD007E47FF /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BAF5321E08F0CD007E47FF /* SearchDelegate.swift */; };
 		40BAF53B1E08F0CD007E47FF /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BAF5331E08F0CD007E47FF /* Serializable.swift */; };
+		CB4C0DAE1E136FCB0002AF8E /* ViewLikesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4C0DAD1E136FCB0002AF8E /* ViewLikesDelegate.swift */; };
+		CB4C0DB01E13727F0002AF8E /* UserLikesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4C0DAF1E13727F0002AF8E /* UserLikesDelegate.swift */; };
+		CB4C0DB21E1372AA0002AF8E /* UserUnlikesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4C0DB11E1372AA0002AF8E /* UserUnlikesDelegate.swift */; };
 		CBB409921E077FC900C424A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB409911E077FC900C424A4 /* AppDelegate.swift */; };
 		CBB409971E077FC900C424A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB409951E077FC900C424A4 /* Main.storyboard */; };
 		CBB409991E077FC900C424A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB409981E077FC900C424A4 /* Assets.xcassets */; };
@@ -57,6 +60,9 @@
 		40BAF5311E08F0CD007E47FF /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		40BAF5321E08F0CD007E47FF /* SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		40BAF5331E08F0CD007E47FF /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
+		CB4C0DAD1E136FCB0002AF8E /* ViewLikesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewLikesDelegate.swift; sourceTree = "<group>"; };
+		CB4C0DAF1E13727F0002AF8E /* UserLikesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLikesDelegate.swift; sourceTree = "<group>"; };
+		CB4C0DB11E1372AA0002AF8E /* UserUnlikesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUnlikesDelegate.swift; sourceTree = "<group>"; };
 		CBB4098E1E077FC900C424A4 /* movieme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movieme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB409911E077FC900C424A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB409931E077FC900C424A4 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +154,9 @@
 				CBB4099A1E077FC900C424A4 /* LaunchScreen.storyboard */,
 				CBB4099D1E077FC900C424A4 /* Info.plist */,
 				CBB409EB1E0B446400C424A4 /* NoResultsViewController.swift */,
+				CB4C0DAD1E136FCB0002AF8E /* ViewLikesDelegate.swift */,
+				CB4C0DAF1E13727F0002AF8E /* UserLikesDelegate.swift */,
+				CB4C0DB11E1372AA0002AF8E /* UserUnlikesDelegate.swift */,
 			);
 			path = movieme;
 			sourceTree = "<group>";
@@ -304,6 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB4C0DAE1E136FCB0002AF8E /* ViewLikesDelegate.swift in Sources */,
+				CB4C0DB01E13727F0002AF8E /* UserLikesDelegate.swift in Sources */,
 				CBB409EA1E0A85CE00C424A4 /* SearchResultsViewController.swift in Sources */,
 				CBB409E31E0A844000C424A4 /* MovieButton.swift in Sources */,
 				CBB409E51E0A845A00C424A4 /* MovieInfoViewController.swift in Sources */,
@@ -311,6 +322,7 @@
 				CBB409CF1E08DA9E00C424A4 /* HomeViewController.swift in Sources */,
 				40BAF53A1E08F0CD007E47FF /* SearchDelegate.swift in Sources */,
 				CBB409921E077FC900C424A4 /* AppDelegate.swift in Sources */,
+				CB4C0DB21E1372AA0002AF8E /* UserUnlikesDelegate.swift in Sources */,
 				CBB409E81E0A84E500C424A4 /* SearchViewController.swift in Sources */,
 				CBB409EC1E0B446400C424A4 /* NoResultsViewController.swift in Sources */,
 				40BAF5391E08F0CD007E47FF /* Movie.swift in Sources */,

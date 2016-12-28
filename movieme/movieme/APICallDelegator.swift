@@ -25,4 +25,37 @@ class APICallDelegator {
             }
         }
     }
+    
+    func doViewLikes(userid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let viewlikesdelegate = ViewLikesDelegate()
+        let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_async(backgroundqueue) {
+            if let url = viewlikesdelegate.setup(["userid":userid]) {
+                viewlikesdelegate.execute(url, callback: callback)
+            }
+        }
+    }
+    
+    func doUserLikesMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let userlikesdelegate = UserLikesDelegate()
+        let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_async(backgroundqueue) {
+            if let url = userlikesdelegate.setup(["userid":userid, "imdbid":imdbid]) {
+                userlikesdelegate.execute(url, callback: callback)
+            }
+        }
+    }
+    
+    func doUserUnikesMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let userunlikesdelegate = UserUnlikesDelegate()
+        let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_async(backgroundqueue) {
+            if let url = userunlikesdelegate.setup(["userid":userid, "imdbid":imdbid]) {
+                userunlikesdelegate.execute(url, callback: callback)
+            }
+        }
+    }
 }
