@@ -26,6 +26,9 @@ class APICallDelegator {
         }
     }
     
+    //  userid: the corresponding user
+    //  callback: the method through which the results are sent.
+    //  summary: this method retrieves a given user's movie likes.
     func doViewLikes(userid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
         let viewlikesdelegate = ViewLikesDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
@@ -37,6 +40,11 @@ class APICallDelegator {
         }
     }
     
+    //  userid: the corresponding user
+    //  imdbid: the corresponding movie's imdbid
+    //  callback: the method through which the results are sent.
+    //  summary: this method creates a like relationship between 
+    //           the given user and movie
     func doUserLikesMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
         let userlikesdelegate = UserLikesDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
@@ -48,6 +56,11 @@ class APICallDelegator {
         }
     }
     
+    //  userid: the corresponding user
+    //  imdbid: the corresponding movie's imdbid
+    //  callback: the method through which the results are sent.
+    //  summary: this method removes an existing like relationship
+    //           between the given user and movie
     func doUserUnikesMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
         let userunlikesdelegate = UserUnlikesDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
