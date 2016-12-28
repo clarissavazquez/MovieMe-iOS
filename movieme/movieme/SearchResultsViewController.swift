@@ -22,6 +22,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         // Get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MyCollectionViewCell
+        cell.posterImageButton.movie = nil
         
         // Use the outlet in our custom class to get a reference to the UIButton in the cell
         // and set its background image to the current movie's poster.
@@ -50,7 +51,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDataSource,
         // 2. Set movieInfoViewController's movie to the MovieButton's movie
         // 3. Navigate to movieInfoViewController
         let movieInfoViewController: MovieInfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MovieInfoViewController") as! MovieInfoViewController
-        movieInfoViewController.movie = sender.movie
+        movieInfoViewController.movie = sender.movie!
         self.navigationController?.showViewController(movieInfoViewController, sender: sender)
     }
 

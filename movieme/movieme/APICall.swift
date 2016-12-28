@@ -31,8 +31,6 @@ extension APICall {
                 let param = NSURLQueryItem(name: key, value: value)
                 urlcomponents.queryItems?.append(param)
             }
-        } else {
-            // no parameters given
         }
 
         log("complete: \(String(urlcomponents.URL!))")
