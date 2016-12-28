@@ -11,18 +11,18 @@ import Foundation
 class CurrentUser: User {
     private static var instance: CurrentUser?
 
-    private init(cinfo: [String: String]) {
-        super.init(info: cinfo)
+    private override init(info: [String: String]) {
+        super.init(info: info)
 
         //  TODO: store friends and movies
     }
 
-    static func getInstance(cinfo: [String: String]) -> CurrentUser {
+    static func setInstance(info: [String: String]) -> CurrentUser {
         if let instance = instance {
             return instance
         }
 
-        instance = CurrentUser(cinfo: cinfo)
+        instance = CurrentUser(info: info)
         return instance!
     }
 

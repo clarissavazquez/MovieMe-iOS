@@ -15,6 +15,7 @@ class User: Serializable {
     var PHOTO_URI = ""
     var FRIENDS: [User]?
     var MOVIES: [Movie]?
+    override var description: String {return NAME}
 
     init(info: Dictionary<String, String>) {
         super.init(json: info)
