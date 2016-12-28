@@ -31,8 +31,10 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
         // and set its background image to the current movie's poster
         if let url = NSURL(string: self.movies[indexPath.item].POSTER) {
             if let data = NSData(contentsOfURL: url) {
-                cell.posterImageButton.setBackgroundImage(UIImage(data: data), forState: UIControlState.Normal)
-                cell.posterImageButton.movie = self.movies[indexPath.item]
+                if let _ = cell.posterImageButton {
+                    cell.posterImageButton.setBackgroundImage(UIImage(data: data), forState: UIControlState.Normal)
+                    cell.posterImageButton.movie = self.movies[indexPath.item]
+                }
             }
         }
         
