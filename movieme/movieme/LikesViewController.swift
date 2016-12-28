@@ -89,6 +89,8 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 self.navigationController?.showViewController(noResultsViewController, sender: nil)
             }
         }
+        
+        log("Movie Results: \(String(movies))")
     }
     
     override func didReceiveMemoryWarning() {
