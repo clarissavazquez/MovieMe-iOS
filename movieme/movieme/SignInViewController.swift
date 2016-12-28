@@ -24,7 +24,7 @@ class SignInViewController: UIViewController {
             return
         }
 
-        if email != "iosuser" || password != "iosuser" {
+        if (email != "iosuser" || password != "iosuser") {
             self.fail.hidden = false
             return
         }
