@@ -18,11 +18,21 @@ class CurrentUser: User {
     }
 
     static func setInstance(info: [String: String]) -> CurrentUser {
+        let acd = APICallDelegator()
         if let instance = instance {
             return instance
         }
 
         instance = CurrentUser(info: info)
+        acd.doViewLikes((instance?.USERID)!) {(result: [Dictionary<String,String>]) -> Void in
+            var movies = [Movie]()
+
+            for movie in result {
+                movies.append(Movie(details: movie))
+            }
+
+            instance?.MOVIES = movies
+        }
         return instance!
     }
 

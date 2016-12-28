@@ -34,11 +34,11 @@ class APICallDelegator {
         let viewlikesdelegate = ViewLikesDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
         
-        dispatch_async(backgroundqueue) {
+        //dispatch_async(backgroundqueue) {
             if let url = viewlikesdelegate.setup(["userid":userid]) {
                 viewlikesdelegate.execute(url, callback: callback)
             }
-        }
+        //}
     }
     
     //  userid: the corresponding user

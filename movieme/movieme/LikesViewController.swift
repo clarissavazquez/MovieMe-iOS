@@ -9,6 +9,7 @@
 import UIKit
 
 class LikesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    @IBOutlet weak var collectionView: UICollectionView!
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     let acd = APICallDelegator()
     var movies = [Movie]()
@@ -61,36 +62,11 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.collectionView.registerClass(MyCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(animated: Bool) {
-        acd.doViewLikes("clarissavazquez") {(result: [Dictionary<String, String>]) -> Void in
-            var movies = [Movie]()
-            
-            for movie in result {
-                movies.append(Movie(details: movie))
-            }
-            
-            // TODO: Handle empty movies
-            
-            // Handle empty list of movies
-            if(!movies.isEmpty) {
-                log("Movie Results: \(String(movies))")
-                self.movies = movies
-            } else {
-                log("No results.")
-                // 1. Declare a NoResultsViewController called noResultsViewController
-                // 2. Set noResultsViewController's movie list to the movie list generated in this method
-                // 3. Navigate to noResultsViewController
-                let noResultsViewController: NoResultsViewController =
-                    self.storyboard?.instantiateViewControllerWithIdentifier("NoResultsViewController")
-                        as! NoResultsViewController
-                self.navigationController?.showViewController(noResultsViewController, sender: nil)
-            }
-        }
-        
-        log("Movie Results: \(String(movies))")
+        self.movies = CurrentUser.getInstance()!.MOVIES!
     }
     
     override func didReceiveMemoryWarning() {

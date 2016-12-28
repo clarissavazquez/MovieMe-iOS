@@ -16,6 +16,7 @@ class MovieInfoViewController: UIViewController {
     @IBOutlet weak var director: UILabel!
     @IBOutlet weak var actors: UILabel!
     @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var likebutton: UIButton!
     
     var movie = Movie(details: Dictionary<String, String>())
     
@@ -55,6 +56,9 @@ class MovieInfoViewController: UIViewController {
         //     button = unlike
         // else
         //     button = like
+        if CurrentUser.getInstance()!.MOVIES!.contains(self.movie) {
+            self.likebutton.titleLabel!.text = "Unlike"
+        }
     }
 
     @IBAction func likeButtonTapped(sender: UIButton) {

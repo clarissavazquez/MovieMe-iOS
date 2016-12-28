@@ -30,6 +30,7 @@ class SignInViewController: UIViewController {
         }
 
         self.fail.hidden = true
+        CurrentUser.setInstance(["NAME":"iosuser","USERID":"iosuser","EMAIL":"iosuser","PHOTO_URI":""])
         let nextScene = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
         self.showViewController(nextScene, sender: nil)
     }

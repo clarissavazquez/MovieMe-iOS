@@ -59,7 +59,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // TODO: Make API Call to get movie recommendations
         // NOTE: Not sure where exactly APICall should occur
     }
