@@ -1,24 +1,22 @@
 /**
  *  Movie.swift
- *
- *  blah blah blah
  */
 
 import Foundation
 
 class Movie: Serializable {
-    var POSTER: String = ""
-    var TITLE: String = ""
-    var DIRECTOR: String = ""
-    var WRITER: String = ""
-    var RELEASED: String = ""
-    var IMDBID: String = ""
-    var RATING: String = ""
-    var RATED: String = ""
-    var ACTORS: String = ""
-    var GENRE: String = ""
-    var RUNTIME: String = ""
-    var PLOT: String = ""
+    var POSTER = ""
+    var TITLE = ""
+    var DIRECTOR = ""
+    var WRITER = ""
+    var RELEASED = ""
+    var IMDBID = ""
+    var RATING = ""
+    var RATED = ""
+    var ACTORS = ""
+    var GENRE = ""
+    var RUNTIME = ""
+    var PLOT = ""
     override var description: String { return TITLE }
 
     init(details: Dictionary<String, String>) {

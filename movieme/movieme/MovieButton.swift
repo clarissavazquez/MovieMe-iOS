@@ -10,5 +10,5 @@
 import UIKit
 
 class MovieButton: UIButton {
-    var movie = Movie(details: Dictionary<String, String>())
+    var movie: Movie?
 }

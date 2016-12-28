@@ -52,17 +52,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // 3. Navigate to movieInfoViewController
         log("recPosterImage was tapped")
         let movieInfoViewController: MovieInfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MovieInfoViewController") as! MovieInfoViewController
-        movieInfoViewController.movie = sender.movie
+        movieInfoViewController.movie = sender.movie!
         self.navigationController?.showViewController(movieInfoViewController, sender: sender)
 
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        movie.POSTER = "http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2015/10/star-wars-force-awakens-official-poster.jpg"
-//        movies.append(movie)
-        
         
         // TODO: Make API Call to get movie recommendations
         // NOTE: Not sure where exactly APICall should occur

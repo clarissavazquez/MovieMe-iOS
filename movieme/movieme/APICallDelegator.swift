@@ -17,11 +17,34 @@ class APICallDelegator {
     //           titles of Movies.
     func doSearchForMovie(title: String, callback: (([Dictionary<String,String>]) -> Void)?) {
         let searchdelegate = SearchDelegate()
+        let params = ["property":"title", "value":title]
+        let backgroundqueue = dispatch_queue_create("\(#function)", DISPATCH_QUEUE_CONCURRENT)
+
+        dispatch_async(backgroundqueue) {
+            if let url = searchdelegate.setup(params) {
+                searchdelegate.execute(url, callback: callback)
+            }
+        }
+    }
+
+    func doLikeMovie(userid: String, imdbid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let likedelegate = LikeDelegate()
         let backgroundqueue = dispatch_queue_create("\(#file)", DISPATCH_QUEUE_CONCURRENT)
 
         dispatch_async(backgroundqueue) {
-            if let url = searchdelegate.setup(["property":"title", "value":title]) {
-                searchdelegate.execute(url, callback: callback)
+            if let url = likedelegate.setup(["userid":userid, "imdbid":imdbid]) {
+                likedelegate.execute(url, callback: callback)
+            }
+        }
+    }
+
+    func doGetRecommendations(userid: String, callback: (([Dictionary<String,String>]) -> Void)?) {
+        let recommendationdelegate = RecommendationDelegate()
+        let backgroundqueue = dispatch_queue_create("\(#function)", DISPATCH_QUEUE_CONCURRENT)
+
+        dispatch_async(backgroundqueue) {
+            if let url = recommendationdelegate.setup(["userid":userid]) {
+                recommendationdelegate.execute(url, callback: callback)
             }
         }
     }

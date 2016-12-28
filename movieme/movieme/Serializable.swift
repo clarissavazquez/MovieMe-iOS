@@ -1,7 +1,5 @@
 /**
  *  Serializable.swift
- *  
- *  blah blah blah
  */
 
 import Foundation
